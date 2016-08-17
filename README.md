@@ -63,13 +63,16 @@ shibboleth2.xml
 
 ### Pitfalls
 
-If you have a proxy before this container it may become difficult to configure a combination of HTTP and HTTPS. For easiest configuration use either HTTP or HTTPS for all traffic up to this container:
-`Client - HTTPS -> HAProxy - HTTPS -> Shibboleth-SP - HTTP -> Software`
-`Client - HTTP -> HAProxy - HTTP -> Shibboleth-SP - HTTP -> Software`
+If you have a proxy before this container it may become difficult to configure a combination of HTTP and HTTPS. For easiest configuration use either HTTP or HTTPS for all traffic up to this container.
 
-Not
+```
+Good:
+Client - HTTPS -> HAProxy - HTTPS -> Shibboleth-SP - HTTP -> Software
+Client - HTTP -> HAProxy - HTTP -> Shibboleth-SP - HTTP -> Software
 
-`Client - HTTPS -> HAProxy - HTTP -> Shibboleth-SP - HTTP -> Software`
+Bad:
+Client - HTTPS -> HAProxy - HTTP -> Shibboleth-SP - HTTP -> Software
+```
 
 ## Authors
 
