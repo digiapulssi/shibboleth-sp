@@ -16,7 +16,7 @@ RUN test -d /var/run/lock || mkdir -p /var/run/lock \
     && echo $'export LD_LIBRARY_PATH=/opt/shibboleth/lib64:$LD_LIBRARY_PATH\n'\
        > /etc/sysconfig/shibd \
     && chmod +x /etc/sysconfig/shibd \
-    && chmod +x /usr/local/bin/httpd-shibd-foreground
+    && chmod +x /usr/local/bin/httpd-shibd-foreground \
     && mkdir /etc/shib-volume/ \
     && ln -s /etc/shibboleth/sp-key.pem /etc/shib-volume/sp-key.pem \
     && ln -s /etc/shibboleth/sp-cert.pem /etc/shib-volume/sp-cert.pem
