@@ -22,6 +22,9 @@ Mount the files to the container you wish to change. The most common files to ch
 -  /etc/pki/tls/certs/*
   - Apache certificates for SSL
 
+If you wish to generate and migrate key-cert files between several redundant instances, mount the following:
+- /etc/shib-volume/
+
 ### Example configuration
 
 Protect and reverse proxy a url
@@ -82,6 +85,8 @@ Client - HTTPS -> HAProxy - HTTP -> Shibboleth-SP - HTTP -> Software
 ## Changes
 
   * Added mod_ssl
+  * Added explicit permissions for cmd script
+  * Added a folder and symbolic links for key-cert
 
 ## LICENSE
 
