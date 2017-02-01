@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+/etc/shibboleth-ds/build-federation.sh
 /etc/shibboleth/shibd-redhat start
 
 # Apache gets grumpy about PID files pre-existing
