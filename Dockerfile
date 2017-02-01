@@ -14,6 +14,7 @@ COPY build-federation.sh /etc/shibboleth-ds/
 
 RUN test -d /var/run/lock || mkdir -p /var/run/lock \
     && test -d /var/lock/subsys/ || mkdir -p /var/lock/subsys/ \
+    && sed -i -r '/<\/?IfModule.*?>/d' /etc/httpd/conf.d/shibboleth-ds.conf \
     && chmod +x /etc/shibboleth/shibd-redhat \
     && chmod +x /etc/shibboleth-ds/build-federation.sh \
     && echo $'export LD_LIBRARY_PATH=/opt/shibboleth/lib64:$LD_LIBRARY_PATH\n'\
