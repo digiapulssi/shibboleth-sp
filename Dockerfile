@@ -24,7 +24,11 @@ RUN test -d /var/run/lock || mkdir -p /var/run/lock \
     && mkdir /etc/shib-volume/ \
     && mkdir /etc/shibboleth-ds/idp_metadata/ \
     && ln -s /etc/shibboleth/sp-key.pem /etc/shib-volume/sp-key.pem \
-    && ln -s /etc/shibboleth/sp-cert.pem /etc/shib-volume/sp-cert.pem
+    && ln -s /etc/shibboleth/sp-cert.pem /etc/shib-volume/sp-cert.pem \
+    && sed -i -e 's/^ErrorLog .*$/ErrorLog \/proc\/self\/fd\/2/' -e 's/^    CustomLog .* combined$/    CustomLog \/proc\/self\/fd\/1 combined/' /etc/httpd/conf/httpd.conf \
+    && sed -i -e 's/^ErrorLog .*$/ErrorLog \/proc\/self\/fd\/2/' -e 's/^CustomLog .* \\$/CustomLog \/proc\/self\/fd\/1 \\/' -e 's/^TransferLog .*$/TransferLog \/proc\/self\/fd\/1/' /etc/httpd/conf.d/ssl.conf \
+    && sed -i -e 's/^    clockSkew/    logger="console.logger" clockSkew/' /etc/shibboleth/shibboleth2.xml \
+    && sed -i -e '8ilog4j.category.Shibboleth-TRANSACTION=INFO\nlog4j.category.XMLTooling.Signature.Debugger=INFO' /etc/shibboleth/console.logger
 
 EXPOSE 80 443
 
